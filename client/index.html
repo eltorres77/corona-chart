@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>COVID-19 Charts</title>
+</head>
+
+<body ng-app="app">
+
+    <div ng-controller="ChartsCtrl">
+        <h1>Nuevos casos por día</h1>
+        <div>
+            <select name="countrySelect1" id="countrySelect1" ng-model="currentgeoId1" ng-change="updateChart()">
+                <option ng-repeat="country in countries" value="{{country.geoId}}">{{country.name}}</option>
+            </select>
+            <select name="countrySelect2" id="countrySelect2" ng-model="currentgeoId2" ng-change="updateChart()">
+                <option ng-repeat="country in countries" value="{{country.geoId}}">{{country.name}}</option>
+            </select>
+            <input type="number" ng-model="dayCount" ng-change="updateChart()">
+        </div>
+        <canvas id="line" class="chart chart-line" chart-data="chartdata" chart-labels="labels" chart-series="series"
+            chart-colors="chartColors">
+        </canvas>
+    </div>
+
+    <script type="application/javascript" src="angular/angular.min.js"></script>
+    <script type="application/javascript" src="chart.js/dist/Chart.min.js"></script>
+    <script type="application/javascript" src="angular-chart.js/dist/angular-chart.min.js"></script>
+    <script type="application/javascript" src="xlsx/dist/shim.min.js"></script>
+    <script type="application/javascript" src="xlsx/dist/xlsx.full.min.js"></script>
+    <script type="application/javascript" src="ramda/dist/ramda.min.js"></script>
+
+    <script type="application/javascript" src="charts.controller.js"></script>
+
+
+</body>
+
+</html>

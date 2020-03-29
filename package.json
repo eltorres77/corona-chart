@@ -1,0 +1,34 @@
+{
+  "name": "corona-chart",
+  "version": "1.0.0",
+  "description": "simple chart of covid-19 expansion",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://torresdev@bitbucket.org/torresdev/corona-chart.git"
+  },
+  "keywords": [
+    "coronavirus",
+    "covid-19",
+    "chart"
+  ],
+  "author": "Javier Torres",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/torresdev/corona-chart#readme",
+  "dependencies": {
+    "angular-chart.js": "^1.1.1",
+    "angularjs": "0.0.1",
+    "cron": "^1.8.2",
+    "csv-parse": "^4.8.8",
+    "express": "^4.17.1",
+    "express-bunyan-logger": "^1.3.3",
+    "moment": "^2.24.0",
+    "morgan": "^1.10.0",
+    "ramda": "^0.27.0",
+    "request": "^2.88.2",
+    "xlsx": "^0.15.6"
+  }
+}
