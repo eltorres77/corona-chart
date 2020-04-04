@@ -6,24 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>COVID-19 Charts</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 </head>
 
 <body ng-app="app">
 
-    <div ng-controller="ChartsCtrl">
-        <h1>Nuevos casos por día</h1>
-        <div>
-            <select name="countrySelect1" id="countrySelect1" ng-model="countryCode1" ng-change="updateChart()">
-                <option ng-repeat="country in countryData" value="{{country.code}}">{{country.name}}</option>
-            </select>
-            <select name="countrySelect2" id="countrySelect2" ng-model="countryCode2" ng-change="updateChart()">
-                <option ng-repeat="country in countryData" value="{{country.code}}">{{country.name}}</option>
-            </select>
-            <input type="number" ng-model="dayCount" ng-change="updateChart()">
+    <div class="container" ng-controller="ChartsCtrl">
+        <h1>COVID-19</h1>
+        <h2>Nuevos casos</h2>
+        <p>Número de nuevos casos y muertes por día.</p>
+        <div class="row">
+            <div class="input-field col s12 m4">
+                <select class="browser-default" ng-model="countryCode1" ng-change="updateChart()">
+                    <option ng-repeat="country in countryData" value="{{country.code}}">{{country.name}}</option>
+                </select>
+            
+            </div>
+            <div class="input-field col s12 m4">
+                <select class="browser-default" ng-model="countryCode2" ng-change="updateChart()">
+                    <option ng-repeat="country in countryData" value="{{country.code}}">{{country.name}}</option>
+                </select>
+            </div>
+            
+            <form action="#" class="input-field col s12 m4">
+                <p class="range-field">
+                <input type="range" min="10" max="150" ng-model="dayCount" ng-change="updateChart()"/>
+                </p>
+            </form>
         </div>
-        <canvas id="line" class="chart chart-line" chart-data="chartdata" chart-labels="labels" chart-series="series"
-            chart-colors="chartColors">
-        </canvas>
+
+        <div ng-show="loading" class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        <div ng-hide="loading">
+            <canvas id="line" class="chart chart-line" chart-data="chartdata" chart-labels="labels" chart-series="series"
+                chart-colors="chartColors">
+            </canvas>
+        </div>
 
         <div>
             <h2>Datos</h2>
@@ -38,14 +69,23 @@
         </div>
     </div>
 
+    <script type="text/javascript" src="materialize-css/dist/js/materialize.min.js"></script>
+
     <script type="application/javascript" src="angular/angular.min.js"></script>
     <script type="application/javascript" src="chart.js/dist/Chart.min.js"></script>
     <script type="application/javascript" src="angular-chart.js/dist/angular-chart.min.js"></script>
     <script type="application/javascript" src="xlsx/dist/shim.min.js"></script>
     <script type="application/javascript" src="xlsx/dist/xlsx.full.min.js"></script>
     <script type="application/javascript" src="ramda/dist/ramda.min.js"></script>
-
+    
     <script type="application/javascript" src="charts.controller.js"></script>
+
+    <script type="application/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems, options);
+          });
+    </script>
 
 
 </body>

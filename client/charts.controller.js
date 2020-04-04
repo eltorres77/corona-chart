@@ -1,5 +1,6 @@
 angular.module("app", ['chart.js']).controller("ChartsCtrl", function ($scope, $http) {
   
+    $scope.loading=true;
     $scope.countryCode1 = 'ESP';
     $scope.countryCode2 = 'ITA';
     $scope.dayCount = 30;
@@ -9,6 +10,8 @@ angular.module("app", ['chart.js']).controller("ChartsCtrl", function ($scope, $
     
     
     $scope.updateChart = function () {
+        $scope.loading=true;
+        
         $scope.countryData1 = R.filter(row => row.countryterritoryCode == ($scope.countryCode1), $scope.data).slice(0, $scope.dayCount).reverse();
         var cases1 = R.map(row => row.cases, $scope.countryData1);
         var deaths1 = R.map(row => row.deaths, $scope.countryData1);
@@ -26,6 +29,8 @@ angular.module("app", ['chart.js']).controller("ChartsCtrl", function ($scope, $
             $scope.countryCode2 + ' cases ',
             $scope.countryCode2 + ' deaths '
         ];
+
+        $scope.loading=false;
     };
 
     
@@ -34,6 +39,10 @@ angular.module("app", ['chart.js']).controller("ChartsCtrl", function ($scope, $
         url: '/country-population.json',
     }).then(function (data) {
         $scope.countryData = data.data.countryData;
+
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, options);
+
     }, function (err) {
         console.log(err);
     });
