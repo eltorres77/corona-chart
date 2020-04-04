@@ -38,18 +38,19 @@
                 </p>
             </form>
         </div>
-
-        <div ng-show="loading" class="preloader-wrapper big active">
-            <div class="spinner-layer spinner-blue-only">
-              <div class="circle-clipper left">
-                <div class="circle"></div>
-              </div><div class="gap-patch">
-                <div class="circle"></div>
-              </div><div class="circle-clipper right">
-                <div class="circle"></div>
-              </div>
+        <div ng-show="loading" class="row">
+            <div style="margin-left: 46%;" class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
             </div>
-          </div>
+        </div>
         <div ng-hide="loading">
             <canvas id="line" class="chart chart-line" chart-data="chartdata" chart-labels="labels" chart-series="series"
                 chart-colors="chartColors">
