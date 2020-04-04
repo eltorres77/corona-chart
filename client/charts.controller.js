@@ -39,10 +39,6 @@ angular.module("app", ['chart.js']).controller("ChartsCtrl", function ($scope, $
         url: '/country-population.json',
     }).then(function (data) {
         $scope.countryData = data.data.countryData;
-
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems, options);
-
     }, function (err) {
         console.log(err);
     });
