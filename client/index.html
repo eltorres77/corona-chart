@@ -13,17 +13,29 @@
     <div ng-controller="ChartsCtrl">
         <h1>Nuevos casos por día</h1>
         <div>
-            <select name="countrySelect1" id="countrySelect1" ng-model="currentgeoId1" ng-change="updateChart()">
-                <option ng-repeat="country in countries" value="{{country.geoId}}">{{country.name}}</option>
+            <select name="countrySelect1" id="countrySelect1" ng-model="countryCode1" ng-change="updateChart()">
+                <option ng-repeat="country in countryData" value="{{country.code}}">{{country.name}}</option>
             </select>
-            <select name="countrySelect2" id="countrySelect2" ng-model="currentgeoId2" ng-change="updateChart()">
-                <option ng-repeat="country in countries" value="{{country.geoId}}">{{country.name}}</option>
+            <select name="countrySelect2" id="countrySelect2" ng-model="countryCode2" ng-change="updateChart()">
+                <option ng-repeat="country in countryData" value="{{country.code}}">{{country.name}}</option>
             </select>
             <input type="number" ng-model="dayCount" ng-change="updateChart()">
         </div>
         <canvas id="line" class="chart chart-line" chart-data="chartdata" chart-labels="labels" chart-series="series"
             chart-colors="chartColors">
         </canvas>
+
+        <div>
+            <h2>Datos</h2>
+            <ul>
+                <li><a href="/today-data">Distribución geográfica casos COVID-19</a> 
+                    (<a href="https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide">www.ecdc.europa.eu</a>)
+                </li>
+                <li><a href="/country-population.csv">Población mundial 2018</a> 
+                    (<a href="https://data.worldbank.org/indicator/SP.POP.TOTL">data.worldbank.org</a>)
+                </li>
+            </ul>
+        </div>
     </div>
 
     <script type="application/javascript" src="angular/angular.min.js"></script>

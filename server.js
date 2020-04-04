@@ -8,6 +8,7 @@ const express = require('express'),
 
 app.use(express.static('client'));
 app.use(express.static('node_modules'));
+app.use(express.static('data'));
 
 const fileUri = 'https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-';
 
