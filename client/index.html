@@ -23,24 +23,24 @@
         <p>Número de nuevos casos y muertes por día.</p>
         <div class="row">
             <div class="input-field col s12 m4">
-                <select class="browser-default" ng-model="countryCode1" ng-change="updateChart()">
+                <select class="browser-default" ng-model="filter.countryCode1" ng-change="updateNewCasesChart()">
                     <option ng-repeat="country in countryData" value="{{country.code}}">{{country.name}}</option>
                 </select>
             
             </div>
             <div class="input-field col s12 m4">
-                <select class="browser-default" ng-model="countryCode2" ng-change="updateChart()">
+                <select class="browser-default" ng-model="filter.countryCode2" ng-change="updateNewCasesChart()">
                     <option ng-repeat="country in countryData" value="{{country.code}}">{{country.name}}</option>
                 </select>
             </div>
             
             <form action="#" class="input-field col s12 m4">
                 <p class="range-field">
-                <input type="range" min="10" max="150" ng-model="dayCount" ng-change="updateChart()"/>
+                <input type="range" min="10" max="150" ng-model="dayCount" ng-change="updateNewCasesChart()"/>
                 </p>
             </form>
         </div>
-        <div ng-show="loading" class="row">
+        <div ng-show="loading " class="row">
             <div style="margin-left: 46%;" class="preloader-wrapper big active">
                 <div class="spinner-layer spinner-blue-only">
                   <div class="circle-clipper left">
@@ -54,7 +54,7 @@
             </div>
         </div>
         <div ng-hide="loading">
-            <canvas id="line" class="chart chart-line" chart-data="chartdata" chart-labels="labels" chart-series="series"
+            <canvas id="line" class="chart chart-line" chart-data="newCasesChartValues.chartdata" chart-labels="newCasesChartValues.labels" chart-series="newCasesChartValues.series"
                 chart-colors="chartColors">
             </canvas>
         </div>
