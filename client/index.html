@@ -19,24 +19,22 @@
 
     <div class="container" ng-controller="ChartsCtrl">
         <h1>COVID-19</h1>
-        <h2>Nuevos casos</h2>
-        <p>Número de nuevos casos y muertes por día.</p>
         <div class="row">
             <div class="input-field col s12 m4">
-                <select class="browser-default" ng-model="filter.countryCode1" ng-change="updateNewCasesChart()">
+                <select class="browser-default" ng-model="filter.countryCode1" ng-change="updateCharts()">
                     <option ng-repeat="country in countryData" value="{{country.code}}">{{country.name}}</option>
                 </select>
             
             </div>
             <div class="input-field col s12 m4">
-                <select class="browser-default" ng-model="filter.countryCode2" ng-change="updateNewCasesChart()">
+                <select class="browser-default" ng-model="filter.countryCode2" ng-change="updateCharts()">
                     <option ng-repeat="country in countryData" value="{{country.code}}">{{country.name}}</option>
                 </select>
             </div>
             
             <form action="#" class="input-field col s12 m4">
                 <p class="range-field">
-                <input type="range" min="10" max="150" ng-model="dayCount" ng-change="updateNewCasesChart()"/>
+                <input type="range" min="10" max="150" ng-model="filter.dayCount" ng-change="updateCharts()"/>
                 </p>
             </form>
         </div>
@@ -54,7 +52,21 @@
             </div>
         </div>
         <div ng-hide="loading">
-            <canvas id="line" class="chart chart-line" chart-data="newCasesChartValues.chartdata" chart-labels="newCasesChartValues.labels" chart-series="newCasesChartValues.series"
+            <h2>Nuevos casos</h2>
+            <p>Número de nuevos casos y muertes por día. En el eje vertical el número de casos, en el eje horizontal los {{filter.dayCount}} últimos días. </p>
+            <canvas id="new-cases" class="chart chart-line" 
+                chart-data="newCasesChartValues.chartdata" 
+                chart-labels="newCasesChartValues.labels" 
+                chart-series="newCasesChartValues.series"
+                chart-colors="chartColors">
+            </canvas>
+            <h2>Nuevos casos por habitante</h2>
+            <p>Porcentaje de nuevos casos en función de la población del país. En el eje vertical el porcentaje sobre el total de la población, 
+                en el eje horizontal los {{filter.dayCount}} últimos días. </p>
+            <canvas id="new-cases-over-population" class="chart chart-line" 
+                chart-data="newCasesOverPopulationChartValues.chartdata" 
+                chart-labels="newCasesOverPopulationChartValues.labels" 
+                chart-series="newCasesOverPopulationChartValues.series"
                 chart-colors="chartColors">
             </canvas>
         </div>
